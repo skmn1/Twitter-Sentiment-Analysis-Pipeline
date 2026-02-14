@@ -222,17 +222,35 @@ if len(df) > 0:
             
             with col2:
                 st.markdown("#### Word Cloud")
-                wordcloud = WordCloud(
-                    width=800,
-                    height=400,
-                    background_color='white',
-                    colormap='viridis'
-                ).generate(' '.join(all_hashtags))
-                
-                fig, ax = plt.subplots(figsize=(10, 5))
-                ax.imshow(wordcloud, interpolation='bilinear')
-                ax.axis('off')
-                st.pyplot(fig)
+                try:
+                    # Try to create wordcloud with a common TrueType font
+                    import os
+                    font_path = None
+                    # Common font paths on Linux systems
+                    for f in ['/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',
+                             '/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf',
+                             '/usr/share/fonts/truetype/ubuntu/Ubuntu-R.ttf']:
+                        if os.path.exists(f):
+                            font_path = f
+                            break
+                    
+                    if font_path:
+                        wordcloud = WordCloud(
+                            width=800,
+                            height=400,
+                            background_color='white',
+                            colormap='viridis',
+                            font_path=font_path
+                        ).generate(' '.join(all_hashtags))
+                        
+                        fig, ax = plt.subplots(figsize=(10, 5))
+                        ax.imshow(wordcloud, interpolation='bilinear')
+                        ax.axis('off')
+                        st.pyplot(fig)
+                    else:
+                        st.warning("Word cloud requires TrueType fonts. Please install fonts: sudo apt-get install fonts-dejavu")
+                except Exception as e:
+                    st.warning(f"Could not generate word cloud: {str(e)}")
         else:
             st.info("No hashtags found in this period")
     
