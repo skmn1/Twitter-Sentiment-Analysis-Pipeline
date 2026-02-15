@@ -78,37 +78,198 @@ def render_view_switcher():
 
 # ========== MOBILE VIEW SPECIFIC CSS ==========
 def apply_mobile_css():
-    """Apply custom CSS styles for Mobile View mode."""
+    """Apply custom CSS styles for Mobile View mode with comprehensive overflow prevention."""
     st.markdown("""
         <style>
-        /* Mobile View Specific Styles */
-        .mobile-view {
-            max-width: 100%;
-            padding: 0.5rem;
+        /* ===== CRITICAL OVERFLOW PREVENTION ===== */
+        
+        /* Root level - prevent any horizontal scroll */
+        html, body {
+            overflow-x: hidden !important;
+            max-width: 100vw !important;
         }
+        
+        /* Mobile View Container - Foundation for overflow prevention */
+        .mobile-view {
+            max-width: 100vw !important;
+            overflow-x: hidden !important;
+            padding: 0 1rem !important;
+            box-sizing: border-box !important;
+            width: 100% !important;
+        }
+        
+        /* Ensure all children respect viewport width */
+        .mobile-view * {
+            box-sizing: border-box !important;
+            max-width: 100% !important;
+        }
+        
+        /* Fix Streamlit container overflow */
+        .mobile-view .stApp {
+            overflow-x: hidden !important;
+            max-width: 100vw !important;
+        }
+        
+        .mobile-view .main {
+            overflow-x: hidden !important;
+            max-width: 100vw !important;
+        }
+        
+        .mobile-view .stAppViewContainer {
+            overflow-x: hidden !important;
+        }
+        
+        .mobile-view [data-testid="stAppViewContainer"] {
+            overflow-x: hidden !important;
+            max-width: 100vw !important;
+        }
+        
+        .mobile-view [data-testid="block-container"] {
+            max-width: 100vw !important;
+            overflow-x: hidden !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+        }
+        
+        /* Fix column overflow */
+        .mobile-view [data-testid="column"] {
+            min-width: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+        }
+        
+        /* Fix row widget margins that cause overflow */
+        .mobile-view .row-widget {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            max-width: 100% !important;
+            flex-wrap: wrap !important;
+        }
+        
+        /* ===== TEXT & CONTENT OVERFLOW PREVENTION ===== */
+        
+        /* Text overflow handling */
+        .mobile-view p,
+        .mobile-view div,
+        .mobile-view span,
+        .mobile-view label,
+        .mobile-view li {
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+            word-break: break-word !important;
+            max-width: 100% !important;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        /* Code and pre blocks */
+        .mobile-view pre,
+        .mobile-view code {
+            max-width: 100% !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+            white-space: pre-wrap !important;
+            word-wrap: break-word !important;
+            font-size: 0.85rem !important;
+        }
+        
+        /* Links don't overflow */
+        .mobile-view a {
+            word-break: break-all !important;
+            max-width: 100% !important;
+        }
+        
+        /* ===== IMAGE & MEDIA FIXES ===== */
+        
+        .mobile-view img {
+            max-width: 100% !important;
+            height: auto !important;
+            display: block !important;
+        }
+        
+        /* Matplotlib/Pyplot figures */
+        .mobile-view .stPlotlyChart,
+        .mobile-view .stPyplot {
+            max-width: 100% !important;
+            width: 100% !important;
+            overflow-x: hidden !important;
+        }
+        
+        /* Plotly chart container */
+        .mobile-view .js-plotly-plot {
+            max-width: 100% !important;
+            width: 100% !important;
+        }
+        
+        .mobile-view .plotly {
+            max-width: 100% !important;
+            width: 100% !important;
+        }
+        
+        /* ===== TABLE & DATAFRAME FIXES ===== */
+        
+        /* Dataframe styling - internal scroll only */
+        .mobile-view .stDataFrame {
+            max-width: 100% !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+        
+        .mobile-view .stDataFrame table {
+            min-width: 100%;
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem !important;
+        }
+        
+        .mobile-view .stDataFrame thead th,
+        .mobile-view .stDataFrame tbody td {
+            padding: 0.5rem !important;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .mobile-view table {
+            display: block !important;
+            max-width: 100% !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+        
+        /* ===== METRIC CARDS ===== */
         
         .mobile-metric-card {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 12px;
-            padding: 1.5rem;
+            padding: 1rem;
             margin: 0.5rem 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             text-align: center;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
         }
         
         .mobile-metric-value {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
             margin: 0.5rem 0;
             color: white;
+            word-break: break-word;
         }
         
         .mobile-metric-label {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #ddd;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            word-break: break-word;
         }
+        
+        /* ===== TWEET CARDS ===== */
         
         .mobile-tweet-card {
             background: #f8f9fa;
@@ -117,6 +278,12 @@ def apply_mobile_css():
             padding: 1rem;
             margin: 0.75rem 0;
             box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
         
         .mobile-tweet-card.positive {
@@ -132,25 +299,31 @@ def apply_mobile_css():
         }
         
         .mobile-tweet-text {
-            font-size: 16px;
-            line-height: 1.6;
+            font-size: 15px;
+            line-height: 1.5;
             margin: 0.5rem 0;
             color: #333;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
         
         .mobile-tweet-meta {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #666;
             margin-top: 0.5rem;
+            word-break: break-word;
         }
         
         .mobile-sentiment-badge {
             display: inline-block;
-            padding: 0.25rem 0.75rem;
+            padding: 0.25rem 0.5rem;
             border-radius: 16px;
-            font-size: 0.85rem;
+            font-size: 0.78rem;
             font-weight: bold;
-            margin-right: 0.5rem;
+            margin-right: 0.25rem;
+            white-space: normal;
+            word-break: break-word;
         }
         
         .mobile-sentiment-badge.positive {
@@ -168,30 +341,110 @@ def apply_mobile_css():
             color: white;
         }
         
+        /* ===== INPUT CONTROLS ===== */
+        
         /* Touch-friendly buttons */
         .stButton > button {
             min-height: 44px;
             font-size: 16px;
-            padding: 12px 24px;
+            padding: 12px 16px;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
         
-        /* Larger text for mobile readability */
-        .mobile-view p, .mobile-view li {
-            font-size: 16px;
-            line-height: 1.6;
+        /* Radio buttons - stack vertically on mobile */
+        .stRadio > div {
+            flex-direction: column !important;
+            gap: 0.5rem;
         }
         
-        /* Full-width charts in mobile view */
-        .mobile-view .stPlotlyChart {
+        .stRadio [role="radiogroup"] {
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+        }
+        
+        /* Selectbox and inputs */
+        .stSelectbox,
+        .stTextInput,
+        .stNumberInput,
+        .stTextArea {
             width: 100% !important;
+            max-width: 100% !important;
         }
+        
+        .stSelectbox select,
+        .stTextInput input,
+        .stNumberInput input,
+        .stTextArea textarea {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        
+        /* Slider fixes */
+        .stSlider {
+            padding: 0 !important;
+            margin: 0.5rem 0 !important;
+        }
+        
+        /* Expanders */
+        .stExpander {
+            max-width: 100% !important;
+        }
+        
+        .streamlit-expanderHeader {
+            font-size: 0.95rem !important;
+        }
+        
+        /* ===== SECTION HEADERS ===== */
         
         .mobile-section-header {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: bold;
-            margin: 1.5rem 0 1rem 0;
+            margin: 1rem 0 0.75rem 0;
             color: #1DA1F2;
+            word-break: break-word;
+            width: 100%;
+            max-width: 100%;
         }
+        
+        /* ===== OVERRIDE ANY FIXED WIDTHS ===== */
+        
+        .mobile-view [style*="width: 500px"],
+        .mobile-view [style*="width: 600px"],
+        .mobile-view [style*="width: 800px"],
+        .mobile-view [style*="width: 1000px"],
+        .mobile-view [style*="width: 1200px"] {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+        
+        /* ===== HORIZONTAL DIVIDERS ===== */
+        
+        .mobile-view hr {
+            width: 100% !important;
+            margin: 1rem 0 !important;
+        }
+        
+        /* ===== WORD CLOUD CONTAINER ===== */
+        
+        .mobile-wordcloud-container {
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow: hidden !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+        
+        .mobile-wordcloud-container img {
+            max-width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+        
+        /* ===== END OVERFLOW PREVENTION ===== */
         </style>
     """, unsafe_allow_html=True)
 
@@ -505,14 +758,18 @@ def render_mobile_view(df, time_range, sentiment_filter, refresh_rate, auto_refr
             },
             hole=0.4
         )
-        fig_pie.update_traces(textposition='inside', textinfo='percent+label', textfont_size=16)
+        fig_pie.update_traces(textposition='inside', textinfo='percent+label', textfont_size=14)
         fig_pie.update_layout(
-            height=350,
-            margin=dict(l=20, r=20, t=40, b=20),
+            height=320,
+            width=None,  # Let container control width
+            autosize=True,
+            margin=dict(l=10, r=10, t=30, b=10),
             showlegend=True,
-            legend=dict(orientation="h", yanchor="bottom", y=-0.2, xanchor="center", x=0.5)
+            legend=dict(orientation="h", yanchor="bottom", y=-0.15, xanchor="center", x=0.5, font=dict(size=11)),
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)'
         )
-        st.plotly_chart(fig_pie, use_container_width=True, key="mobile_pie")
+        st.plotly_chart(fig_pie, use_container_width=True, config={'displayModeBar': False, 'responsive': True}, key="mobile_pie")
         
         st.markdown("---")
         
@@ -522,7 +779,7 @@ def render_mobile_view(df, time_range, sentiment_filter, refresh_rate, auto_refr
             df,
             x='sentiment_score',
             color='sentiment',
-            nbins=30,
+            nbins=25,
             color_discrete_map={
                 'positive': '#00CC96',
                 'negative': '#EF553B',
@@ -530,13 +787,17 @@ def render_mobile_view(df, time_range, sentiment_filter, refresh_rate, auto_refr
             }
         )
         fig_hist.update_layout(
-            height=300,
-            margin=dict(l=20, r=20, t=40, b=40),
+            height=280,
+            width=None,  # Let container control width
+            autosize=True,
+            margin=dict(l=10, r=10, t=30, b=40),
             bargap=0.1,
             showlegend=True,
-            legend=dict(orientation="h", yanchor="bottom", y=-0.3, xanchor="center", x=0.5)
+            legend=dict(orientation="h", yanchor="bottom", y=-0.2, xanchor="center", x=0.5, font=dict(size=11)),
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)'
         )
-        st.plotly_chart(fig_hist, use_container_width=True, key="mobile_hist")
+        st.plotly_chart(fig_hist, use_container_width=True, config={'displayModeBar': False, 'responsive': True}, key="mobile_hist")
         
         st.markdown("---")
         
@@ -559,13 +820,18 @@ def render_mobile_view(df, time_range, sentiment_filter, refresh_rate, auto_refr
                 color_continuous_scale='viridis'
             )
             fig_bar.update_layout(
-                height=350,
-                margin=dict(l=20, r=20, t=20, b=40),
+                height=320,
+                width=None,  # Let container control width
+                autosize=True,
+                margin=dict(l=80, r=10, t=20, b=30),
                 showlegend=False,
                 yaxis={'categoryorder':'total ascending'},
-                coloraxis_showscale=False
+                coloraxis_showscale=False,
+                paper_bgcolor='rgba(0,0,0,0)',
+                plot_bgcolor='rgba(0,0,0,0)',
+                font=dict(size=11)
             )
-            st.plotly_chart(fig_bar, use_container_width=True, key="mobile_hashtag")
+            st.plotly_chart(fig_bar, use_container_width=True, config={'displayModeBar': False, 'responsive': True}, key="mobile_hashtag")
             
             # Simple list instead of word cloud for mobile
             if not show_wordcloud:

@@ -453,31 +453,79 @@ Located at the top of the dashboard, the view switcher allows seamless toggling 
 
 ### Mobile-Specific Optimizations
 
-#### Performance Features
-- **Data Limit Control**: Adjust max tweets loaded (500-10,000) in sidebar
-- **Word Cloud Toggle**: Disable on slow connections for faster loading
-- **Pagination**: Load 10-50 tweets per page (configurable)
-- **Optimized Refresh Rate**: Increase to 30-60s on mobile networks
+The Mobile View includes comprehensive overflow prevention and responsive design improvements:
+
+#### Zero Horizontal Scrolling
+- **Container-level overflow prevention**: All content constrained to viewport width
+- **Box-sizing: border-box**: Proper padding/margin calculation throughout
+- **Max-width constraints**: All elements respect 100vw maximum width
+- **Responsive layout**: Single-column stacking prevents horizontal overflow
+
+#### Text & Content Handling
+- **Word wrapping**: Long text automatically wraps to viewport width
+- **URL handling**: Long URLs break properly without causing overflow
+- **Code blocks**: Monospace text has internal horizontal scroll when needed
+- **Text sizing**: 16px+ font sizes for mobile readability
+
+#### Chart Optimization
+- **Responsive charts**: Plotly charts automatically resize to screen width
+- **Touch-friendly**: Interactive toolbar disabled on mobile to save space
+- **Adaptive legends**: Horizontal legends for better mobile layout
+- **Optimized margins**: Reduced margins to maximize chart space
+- **Responsive config**: Charts auto-scale to container width with smooth animations
+
+#### Table & Data Handling
+- **Card layout**: Tweets displayed as individual cards (no wide tables)
+- **Internal scrolling**: Dataframes have internal horizontal scroll when needed
+- **Column constraints**: No columns exceed viewport width
+- **Touch scrolling**: Momentum scrolling enabled for smooth interaction
+
+#### Performance Optimizations
+- **Reduced data points**: Charts simplified for mobile screens
+- **Fewer hashtags**: ≤10 top hashtags displayed (vs ≤15 on desktop)
+- **No word cloud**: Word cloud disabled by default on mobile
+- **Smaller font sizes**: Optimized for legibility without wasting space
+- **Lazy rendering**: Pagination prevents loading all tweets at once
+- **Data limit control**: Configurable tweets per page (10-50)
 
 #### Touch & Accessibility
-- Minimum 16px font size for readability
-- 44x44px minimum tap targets for all interactive elements
-- Touch-enabled chart interactions
-- Large, clear buttons for navigation
+- **44x44px minimum tap targets**: All buttons and controls sized for touch
+- **Smooth scrolling**: `-webkit-overflow-scrolling: touch` for momentum scrolling
+- **No hover interactions**: Mobile-friendly without requiring hovering
+- **Larger spacing**: Comfortable touch targets without crowding
+- **Minimum 16px font**: Readable text without zooming
+
+#### Viewport Adaptation
+- **320px (iPhone SE)**: Single-column, stacked controls, optimized spacing
+- **375px (iPhone 6/7/8)**: Full-featured card layouts
+- **414px (iPhone 11, larger phones)**: Enhanced mobile features
+- **768px+ (Tablets)**: Can support wider layouts adapting to screen
+
+#### Data Efficiency
+- **Data limit control**: Load 500-10,000 tweets (configurable)
+- **Page size selection**: 10-50 tweets per page
+- **Refresh rate adjustment**: Increase to 30-60s on slow connections
+- **Word cloud toggle**: Disable on slow networks
 
 #### Best Practices for Mobile
+
+**For Best Performance:**
+
 1. **Connection Speed**:
    - On 3G/4G: Set data limit to 500-1000 tweets
    - Disable word cloud for faster loading
    - Increase refresh rate to 30+ seconds
-2. **Performance**:
-   - Use shorter time ranges ("Last hour", "Last 6 hours")
-   - Reduce tweets per page to 10-20
+
+2. **Screen Size**:
+   - Use portrait orientation for reading tweets
+   - Switch to landscape for viewing charts
+   - Keep device at 100% zoom (don't pinch-zoom)
+
 3. **Troubleshooting**:
    - Charts not loading? Reduce data limit in sidebar
    - Page slow? Disable word cloud and auto-refresh
    - Layout issues? Clear browser cache
-   - Use Chrome Mobile or Safari for best experience
+   - Best experience: Chrome Mobile or Safari
 
 ### Screenshots
 
