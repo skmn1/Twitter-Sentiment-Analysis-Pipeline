@@ -95,6 +95,10 @@ Detailed table view showing individual tweets with their sentiment scores, hasht
   - Real-time visualization of sentiment trends
   - Interactive charts and metrics
   - Auto-refreshing data displays
+  - **Mobile-responsive design** (320px - 4K displays)
+  - Touch-optimized controls and navigation
+  - Adaptive layouts for phones, tablets, and desktops
+  - Performance optimizations for mobile networks
 
 ## 📋 Components
 
@@ -344,6 +348,71 @@ MONGO_COLLECTION = "tweets"
 - **Data Storage**: Stores processed tweets in MongoDB with full metadata
 - **Live Dashboard**: Real-time visualization with Streamlit
 - **Scalable Architecture**: Built on industry-standard big data tools
+- **📱 Mobile-Responsive Design**: Fully optimized for mobile devices (320px - 428px)
+  - Touch-friendly controls with 44x44px minimum tap targets
+  - Responsive charts that adapt to screen size
+  - Pagination for efficient data loading on mobile
+  - Collapsible sections and mobile-optimized navigation
+  - Progressive performance optimization for different screen sizes
+
+## 📱 Mobile Features
+
+### Responsive Design
+The dashboard is fully responsive and optimized for:
+- **Small Mobile** (320px - 428px): Single column layout, compact metrics
+- **Tablets** (769px - 1024px): Two-column layout, optimized charts
+- **Desktop** (1025px+): Full multi-column layout
+
+### Mobile-Specific Optimizations
+
+#### Navigation & Layout
+- Sidebar collapsed by default on mobile (access via ☰ button)
+- Vertically stacked visualizations for easy scrolling
+- Collapsible configuration panels to maximize screen space
+- Touch-friendly tabs for switching between views
+
+#### Performance Features
+- **Data Limit Control**: Adjust max tweets loaded (500-10,000)
+- **Word Cloud Toggle**: Disable on slow connections
+- **Pagination**: Load 10-100 tweets per page
+- **Lazy Loading**: Optimized for mobile networks
+
+#### Chart Optimizations
+- Reduced data points for clarity on small screens
+- Touch-enabled interactions (swipe to pan)
+- Larger fonts and touch targets (minimum 16px)
+- Horizontal legends for better mobile display
+- Disabled unnecessary toolbars on touch devices
+
+#### Data Table Enhancements
+- **Card View**: Expandable tweet cards for mobile
+- **Table Toggle**: Switch between card and table view
+- **Pagination Controls**: Previous/Next buttons
+- Touch-friendly sorting and filtering
+
+### Mobile Usage Tips
+
+1. **Best Practices**:
+   - Use portrait orientation for reading tweets
+   - Landscape mode works well for charts
+   - Reduce data limit (500-1000) on slow connections
+   - Disable word cloud on 3G/4G for faster loading
+
+2. **Performance**:
+   - Auto-refresh may be slower on mobile networks
+   - Consider increasing refresh rate (30-60s) on mobile
+   - Use shorter time ranges (Last hour, Last 6 hours)
+
+3. **Navigation**:
+   - Swipe through tabs to explore different views
+   - Use sidebar (☰) for filters and configuration
+   - Pull to refresh in browser for latest data
+
+4. **Troubleshooting Mobile Issues**:
+   - If charts don't load, reduce data limit
+   - If page is slow, disable word cloud
+   - Clear browser cache if layout issues occur
+   - Use Chrome Mobile or Safari for best experience
 
 ##  Data Flow
 
@@ -449,6 +518,53 @@ use twitter_analysis
 db.tweets.countDocuments()
 db.tweets.find().limit(5)
 ```
+
+### Testing Mobile Responsiveness
+
+Test the dashboard on different screen sizes:
+
+1. **Using Browser Developer Tools**:
+```bash
+# Open dashboard
+streamlit run dashboard/app.py
+
+# Then in browser (Chrome/Firefox):
+# - Press F12 to open DevTools
+# - Click "Toggle Device Toolbar" (Ctrl+Shift+M)
+# - Select device presets or custom dimensions
+```
+
+2. **Recommended Test Viewports**:
+   - iPhone SE: 375 x 667px
+   - iPhone 12/13/14: 390 x 844px  
+   - iPhone 14 Pro Max: 428 x 926px
+   - Samsung Galaxy S20: 360 x 800px
+   - iPad Mini: 768 x 1024px
+   - iPad Pro: 1024 x 1366px
+
+3. **What to Test**:
+   - ✅ All metrics visible without horizontal scroll
+   - ✅ Tap targets are at least 44x44px
+   - ✅ Charts are readable and interactive
+   - ✅ Tabs work with touch/swipe
+   - ✅ Sidebar opens and closes properly
+   - ✅ Pagination controls function correctly
+   - ✅ Text is readable (minimum 16px)
+   - ✅ No layout overflow or broken elements
+
+4. **Performance Testing**:
+```bash
+# In browser DevTools:
+# - Network tab → Throttle to "Fast 3G" or "Slow 4G"
+# - Test loading times and responsiveness
+# - Check data loads within 3 seconds
+```
+
+5. **Mobile Browser Testing**:
+   - Test on actual devices when possible
+   - iOS Safari, Chrome Mobile, Firefox Mobile
+   - Check touch gestures work properly
+   - Verify orientation changes (portrait/landscape)
 
 ## 🐛 Troubleshooting
 
@@ -570,6 +686,60 @@ source .venv/bin/activate
 
 # Reinstall packages
 pip install -r requirements.txt
+```
+
+#### 8. Mobile Display Issues
+
+**Problem**: Dashboard not displaying correctly on mobile devices.
+
+**Solution**:
+```bash
+# Clear browser cache on mobile
+# For Chrome Mobile: Settings → Privacy → Clear browsing data
+
+# Force refresh the page
+# iOS Safari: Pull down to refresh
+# Chrome Mobile: Pull down to refresh
+
+# Check viewport settings
+# The dashboard should auto-detect mobile screens
+# Ensure you're not in "Desktop site" mode
+
+# Test with different browsers
+# Try Chrome Mobile, Safari, or Firefox Mobile
+```
+
+#### 9. Slow Performance on Mobile
+
+**Problem**: Dashboard is slow or unresponsive on mobile.
+
+**Solution**:
+```bash
+# In sidebar filters:
+# 1. Reduce "Max tweets to load" to 500 or 1000
+# 2. Disable "Show word cloud"  
+# 3. Increase refresh rate to 30-60 seconds
+# 4. Use shorter time ranges (Last hour)
+
+# Also check:
+# - Close other browser tabs
+# - Ensure good network connection (WiFi recommended)
+# - Clear browser cache
+```
+
+#### 10. Pagination Not Working
+
+**Problem**: Previous/Next buttons don't respond.
+
+**Solution**:
+```bash
+# This is usually a session state issue
+# Refresh the page completely (F5 or pull to refresh)
+
+# If issue persists:
+# - Clear browser cache
+# - Try a different browser
+# - Check browser console for errors (F12)
 ```
 
 ### Performance Issues
