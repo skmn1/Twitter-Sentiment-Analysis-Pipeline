@@ -8,7 +8,7 @@ A real-time big data pipeline for Twitter sentiment analysis using Kafka, Spark 
 
 ```
 ┌─────────────────┐      ┌──────────────┐      ┌─────────────────┐      ┌──────────┐      ┌────────────────┐
-│  Tweet Dataset  │──────▶│    Kafka     │──────▶│  Spark Streaming│──────▶│ MongoDB  │──────▶│   Streamlit    │
+│  Tweet Dataset  │───▶ │    Kafka      │────▶│  Spark Streaming│────▶│ MongoDB   │────▶│   Streamlit    │
 │ (JSON File)     │      │   Producer   │      │   Consumer      │      │          │      │   Dashboard    │
 └─────────────────┘      └──────────────┘      └─────────────────┘      └──────────┘      └────────────────┘
                                │                       │                                         │
@@ -17,7 +17,7 @@ A real-time big data pipeline for Twitter sentiment analysis using Kafka, Spark 
                          │  Kafka   │          │  Sentiment  │                            │  Real-   │
                          │  Broker  │          │  Analysis   │                            │  Time    │
                          └──────────┘          └─────────────┘                            │  Viz     │
-                               │                       │                                   └──────────┘
+                               │                       │                                  └──────────┘
                                ▼                       ▼
                          ┌──────────┐          ┌─────────────┐
                          │Zookeeper │          │  Entity     │
