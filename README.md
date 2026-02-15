@@ -355,64 +355,139 @@ MONGO_COLLECTION = "tweets"
   - Collapsible sections and mobile-optimized navigation
   - Progressive performance optimization for different screen sizes
 
-## 📱 Mobile Features
+## � Dashboard Views
 
-### Responsive Design
-The dashboard is fully responsive and optimized for:
-- **Small Mobile** (320px - 428px): Single column layout, compact metrics
-- **Tablets** (769px - 1024px): Two-column layout, optimized charts
-- **Desktop** (1025px+): Full multi-column layout
+The dashboard now features a **dual-view system** that lets you choose between optimized experiences for different use cases:
+
+### View Switcher
+
+Located at the top of the dashboard, the view switcher allows seamless toggling between:
+
+- **🖥️ Desktop View** (Default) - Multi-column layout optimized for large screens
+- **📱 Mobile View** - Card-based layout optimized for phones and touch devices
+
+**Desktop View is the DEFAULT** when you first load the dashboard. You can switch to Mobile View at any time by clicking the radio button at the top of the page.
+
+### Desktop View (Default)
+
+**Optimized for**: Large screens (laptops, desktops, monitors)
+
+**Features**:
+- **Multi-column layouts**: Side-by-side visualizations for comprehensive overviews
+- **5-column metrics row**: All key metrics visible at once
+- **Tabbed interface**: 
+  - 📊 Overview: Sentiment distribution and score histograms side-by-side
+  - ⏱️ Temporal: Time-series analysis with multiple charts
+  - 🏷️ Hashtags: Top hashtags bar chart and word cloud
+  - 📝 Details: Sortable data table with gradient styling
+- **Advanced statistics**: Expandable section with detailed breakdowns
+- **Full data table**: Rich table view with sentiment score color gradients
+- **Word clouds**: Visual representation of hashtag frequencies
+
+**Best for**:
+- Analyzing large datasets
+- Comparing multiple metrics simultaneously
+- Detailed data exploration
+- Presentation and reporting
+
+**Usage Tips**:
+- Use tabs to navigate between different analysis views
+- Hover over charts for detailed tooltips
+- Sort data table by clicking column headers
+- Expand "Advanced Statistics" for deeper insights
+
+### Mobile View
+
+**Optimized for**: Phones, tablets, and touch devices
+
+**Features**:
+- **Single-column vertical layout**: Easy scrolling on small screens
+- **Card-based metrics**: Visual metric cards in 2x2 and 3-column grids
+- **Touch-friendly controls**: Minimum 44x44px tap targets
+- **Card-based tweet display**: Each tweet displayed in an individual card with:
+  - Color-coded left border (green/red/blue for sentiment)
+  - Large readable text (16px+)
+  - Sentiment badges
+  - Timestamp metadata
+- **Pagination**: Previous/Next buttons with page counter
+- **Stacked charts**: All visualizations stack vertically for readability
+- **Collapsible options**: Display settings hidden in expandable section
+- **Simplified hashtag view**: Bar chart with collapsible list (no word cloud)
+
+**Best for**:
+- On-the-go monitoring
+- Quick sentiment checks
+- Reading individual tweets
+- Touch-based interaction
+
+**Usage Tips**:
+- Swipe or tap to navigate pages of tweets
+- Tap "Display Options" to customize sort order and page size
+- Use portrait orientation for best tweet readability
+- Landscape works well for viewing charts
+- Reduce "Tweets per page" (10-20) for faster loading on mobile networks
+
+### Feature Comparison
+
+| Feature | Desktop View | Mobile View |
+|---------|-------------|-------------|
+| **Layout** | Multi-column, tabs | Single-column, vertical scroll |
+| **Metrics Display** | 5-column row | 2x2 + 3-column cards |
+| **Tweet Display** | Data table with gradients | Individual cards with badges |
+| **Charts** | Side-by-side | Stacked vertically |
+| **Hashtags** | Bar chart + word cloud | Bar chart + list |
+| **Navigation** | Tabs | Scroll + pagination |
+| **Best Screen Size** | 1025px+ | 320px - 768px |
+| **Sorting** | Table headers | Dropdown selector |
+| **Tweet Pagination** | Slider | Prev/Next buttons |
+
+### Switching Between Views
+
+1. **Locate the View Switcher**: Look for the "📊 Dashboard View" section at the top of the page
+2. **Select Your Preferred View**: 
+   - Click "🖥️ Desktop View (Default)" for the full-featured desktop experience
+   - Click "📱 Mobile View" for the mobile-optimized card-based layout
+3. **The page will update instantly** to reflect your choice
+
+**Note**: Your view selection is preserved while you remain on the page. Refreshing the browser will reset to Desktop View (default).
 
 ### Mobile-Specific Optimizations
 
-#### Navigation & Layout
-- Sidebar collapsed by default on mobile (access via ☰ button)
-- Vertically stacked visualizations for easy scrolling
-- Collapsible configuration panels to maximize screen space
-- Touch-friendly tabs for switching between views
-
 #### Performance Features
-- **Data Limit Control**: Adjust max tweets loaded (500-10,000)
-- **Word Cloud Toggle**: Disable on slow connections
-- **Pagination**: Load 10-100 tweets per page
-- **Lazy Loading**: Optimized for mobile networks
+- **Data Limit Control**: Adjust max tweets loaded (500-10,000) in sidebar
+- **Word Cloud Toggle**: Disable on slow connections for faster loading
+- **Pagination**: Load 10-50 tweets per page (configurable)
+- **Optimized Refresh Rate**: Increase to 30-60s on mobile networks
 
-#### Chart Optimizations
-- Reduced data points for clarity on small screens
-- Touch-enabled interactions (swipe to pan)
-- Larger fonts and touch targets (minimum 16px)
-- Horizontal legends for better mobile display
-- Disabled unnecessary toolbars on touch devices
+#### Touch & Accessibility
+- Minimum 16px font size for readability
+- 44x44px minimum tap targets for all interactive elements
+- Touch-enabled chart interactions
+- Large, clear buttons for navigation
 
-#### Data Table Enhancements
-- **Card View**: Expandable tweet cards for mobile
-- **Table Toggle**: Switch between card and table view
-- **Pagination Controls**: Previous/Next buttons
-- Touch-friendly sorting and filtering
-
-### Mobile Usage Tips
-
-1. **Best Practices**:
-   - Use portrait orientation for reading tweets
-   - Landscape mode works well for charts
-   - Reduce data limit (500-1000) on slow connections
-   - Disable word cloud on 3G/4G for faster loading
-
+#### Best Practices for Mobile
+1. **Connection Speed**:
+   - On 3G/4G: Set data limit to 500-1000 tweets
+   - Disable word cloud for faster loading
+   - Increase refresh rate to 30+ seconds
 2. **Performance**:
-   - Auto-refresh may be slower on mobile networks
-   - Consider increasing refresh rate (30-60s) on mobile
-   - Use shorter time ranges (Last hour, Last 6 hours)
-
-3. **Navigation**:
-   - Swipe through tabs to explore different views
-   - Use sidebar (☰) for filters and configuration
-   - Pull to refresh in browser for latest data
-
-4. **Troubleshooting Mobile Issues**:
-   - If charts don't load, reduce data limit
-   - If page is slow, disable word cloud
-   - Clear browser cache if layout issues occur
+   - Use shorter time ranges ("Last hour", "Last 6 hours")
+   - Reduce tweets per page to 10-20
+3. **Troubleshooting**:
+   - Charts not loading? Reduce data limit in sidebar
+   - Page slow? Disable word cloud and auto-refresh
+   - Layout issues? Clear browser cache
    - Use Chrome Mobile or Safari for best experience
+
+### Screenshots
+
+#### Desktop View
+![Desktop View](images/desktop-view.png)
+*Desktop view showing side-by-side charts and multi-column layout*
+
+#### Mobile View
+![Mobile View](images/mobile-view.png)
+*Mobile view showing card-based tweets and vertical stacking*
 
 ##  Data Flow
 
