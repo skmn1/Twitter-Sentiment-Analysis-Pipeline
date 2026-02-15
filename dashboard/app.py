@@ -10,7 +10,8 @@ import matplotlib.pyplot as plt
 import sys
 import os
 
-sys.path.append('..')
+# Add parent directory to path for imports
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from config import MONGO_URI, MONGO_DB, MONGO_COLLECTION
 
 # ========== PAGE CONFIGURATION ==========
