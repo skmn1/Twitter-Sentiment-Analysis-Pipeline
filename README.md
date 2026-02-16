@@ -2,6 +2,59 @@
 
 A real-time big data pipeline for Twitter sentiment analysis using Kafka, Spark Streaming, MongoDB, and Streamlit.
 
+---
+
+## 📑 Table of Contents
+
+- [Screenshots](#-screenshots)
+- [Dataset Overview](#-dataset-overview)
+  - [Data Source](#data-source)
+  - [Dataset Characteristics](#dataset-characteristics)
+  - [Data Quality Metrics](#data-quality-metrics)
+- [Data Exploration & Insights](#-data-exploration--insights)
+  - [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
+  - [Key Findings](#key-findings)
+  - [Findings Informing Pipeline Design](#findings-informing-pipeline-design)
+- [Data Cleaning & Preparation](#-data-cleaning--preparation)
+- [Architecture](#️-architecture)
+  - [High-Level Architecture](#high-level-architecture)
+  - [Detailed Component Architecture](#detailed-component-architecture)
+- [Components](#-components)
+- [Sentiment Analysis Methodology](#-sentiment-analysis-methodology)
+  - [Why VADER?](#why-vader)
+  - [VADER Implementation Details](#vader-implementation-details)
+  - [Entity Extraction](#entity-extraction)
+  - [Accuracy Validation](#accuracy-validation)
+  - [Limitations](#limitations)
+- [Getting Started](#-getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the Pipeline](#running-the-pipeline)
+  - [Quick Launch Script](#quick-launch-script)
+- [Configuration](#-configuration)
+- [Features](#-features)
+- [📚 Interactive Learning Tool](#-interactive-learning-tool)
+- [Dashboard Views](#-dashboard-views)
+  - [Desktop View Features](#desktop-view-features)
+  - [Mobile View Features](#mobile-view-features)
+  - [Switching Between Views](#switching-between-views)
+  - [Mobile-Specific Optimizations](#mobile-specific-optimizations)
+  - [Testing Mobile Responsiveness](#testing-mobile-responsiveness)
+- [Data Flow](#-data-flow)
+- [Tech Stack](#️-tech-stack)
+- [Project Structure](#-project-structure)
+- [Testing](#-testing)
+  - [Testing Mobile Responsiveness](#testing-mobile-responsiveness-1)
+- [Troubleshooting](#-troubleshooting)
+  - [Common Issues](#common-issues)
+  - [Performance Issues](#performance-issues)
+  - [Logs and Monitoring](#logs-and-monitoring)
+- [License](#-license)
+- [Contributing](#-contributing)
+- [Contact](#-contact)
+
+---
+
 ## 📸 Screenshots
 
 ### Dashboard Overview
@@ -767,6 +820,68 @@ MONGO_COLLECTION = "tweets"
   - Adaptive layouts for phones, tablets, desktops
   - Card-based tweet display for mobile readability
 - **High Throughput**: Processes 50+ tweets/second with <100ms latency
+
+---
+
+## 📚 Interactive Learning Tool
+
+Want to master this Big Data pipeline? We've created a comprehensive interactive learning tool to help you understand every aspect of the system!
+
+**📖 [Access the Interactive Learning Tool](LEARNING_TOOL.md)**
+
+### What's Inside:
+
+#### 🧠 **35 Flashcards** (3 Difficulty Levels)
+- **Beginner** (Cards 1-10): Core concepts
+  - What is Kafka? What is VADER? MongoDB fundamentals
+  - Data cleaning pipeline, Stream simulator purpose
+  - Sentiment scoring thresholds, Docker services
+  
+- **Intermediate** (Cards 11-20): Architecture & Implementation
+  - Kafka-Spark integration, DataFrame transformations
+  - MongoDB indexing strategy, Micro-batch processing
+  - VADER linguistic features, Data flow enrichment
+  - Fault tolerance, Dashboard architecture
+  
+- **Advanced** (Cards 21-35): Production & Scaling
+  - Distributed computing, Spark UDFs, State management
+  - MongoDB aggregation, Late data handling, Backpressure
+  - Schema evolution, Cost optimization for 1B tweets/day
+  - Testing & validation, Anomaly detection, Security
+
+#### 📝 **30 Quiz Questions** with Detailed Solutions
+- **15 Multiple Choice**: Technology selection, performance, scaling
+- **10 True/False**: Quick concept checks
+- **7 Scenario-Based**: Real-world debugging and optimization
+  - "Dashboard query takes 500ms on first request, 8ms on second—why?"
+  - "MongoDB bottleneck at 100 tweets/sec—how to fix?"
+  - "Sentiment accuracy dropped from 78% to 62%—diagnose and improve"
+- **5 Code Comprehension**: UDF performance, bulk inserts, Kafka offsets
+- **2 Sequencing**: Deployment order, troubleshooting steps
+
+#### 🎯 **Study Resources**
+- **Self-assessment rubric** with scoring guide
+- **Performance bands**: Expert (90-100%), Proficient (80-89%), Intermediate (70-79%)
+- **8-hour deep dive curriculum** with time-boxed learning paths
+- **Technical interview prep**: Most likely questions with model answers
+- **4-week study plan**: From foundations to production expertise
+
+### Perfect For:
+- 🎓 **Students**: Learn big data concepts with practical examples
+- 💼 **Job Seekers**: Prepare for technical interviews on streaming architectures
+- 👨‍💻 **Engineers**: Deepen understanding of Kafka/Spark/MongoDB integration
+- 📖 **Self-Learners**: Master the pipeline at your own pace with structured content
+
+### How to Use:
+1. **Start with Flashcards**: Test yourself before revealing answers (spoiler tags)
+2. **Take the Quiz**: Answer all 30 questions and score yourself
+3. **Review Explanations**: Deep-dive into detailed solutions
+4. **Track Progress**: Use the scoring rubric to measure mastery
+5. **Iterate**: Focus on weak areas and retest
+
+**🚀 [Get Started with the Learning Tool →](LEARNING_TOOL.md)**
+
+---
 
 ## 💫 Dashboard Views
 
