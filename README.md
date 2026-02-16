@@ -34,7 +34,7 @@ Detailed table view showing individual tweets with their sentiment scores, hasht
 
 ---
 
-## � Table of Contents
+## 📚 Table of Contents
 
 - [Dataset Overview](#-dataset-overview)
   - [Data Source](#data-source)
