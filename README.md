@@ -2,11 +2,40 @@
 
 A real-time big data pipeline for Twitter sentiment analysis using Kafka, Spark Streaming, MongoDB, and Streamlit.
 
+## 📸 Screenshots
+
+### Dashboard Overview
+
+The Streamlit dashboard provides real-time visualization of tweet sentiment analysis with interactive charts and metrics.
+
+![Dashboard Main View](images/dashboard-screenshot.png)
+*Main dashboard showing real-time sentiment analysis metrics and visualizations*
+
+### Sentiment Distribution
+
+Real-time charts displaying sentiment distribution across positive, negative, and neutral tweets with percentage breakdowns.
+
+![Sentiment Distribution](images/sentiment-charts1.png)
+*Sentiment distribution pie chart showing the proportion of different sentiment categories*
+
+### Hashtag Analysis
+
+Visual analysis of the most frequently occurring hashtags in the processed tweets.
+
+![Hashtag Analysis](images/sentiment-charts2.png)
+*Top hashtags word cloud and frequency chart from tweet analysis*
+
+### Detailed Tweets View
+
+Detailed table view showing individual tweets with their sentiment scores, hashtags, and metadata.
+
+![Detailed Tweets](images/sentiment-charts3.png)
+*Real-time feed of processed tweets with sentiment analysis results*
+
 ---
 
-## 📑 Table of Contents
+## � Table of Contents
 
-- [Screenshots](#-screenshots)
 - [Dataset Overview](#-dataset-overview)
   - [Data Source](#data-source)
   - [Dataset Characteristics](#dataset-characteristics)
@@ -55,39 +84,7 @@ A real-time big data pipeline for Twitter sentiment analysis using Kafka, Spark 
 
 ---
 
-## 📸 Screenshots
-
-### Dashboard Overview
-
-The Streamlit dashboard provides real-time visualization of tweet sentiment analysis with interactive charts and metrics.
-
-![Dashboard Main View](images/dashboard-screenshot.png)
-*Main dashboard showing real-time sentiment analysis metrics and visualizations*
-
-### Sentiment Distribution
-
-Real-time charts displaying sentiment distribution across positive, negative, and neutral tweets with percentage breakdowns.
-
-![Sentiment Distribution](images/sentiment-charts1.png)
-*Sentiment distribution pie chart showing the proportion of different sentiment categories*
-
-### Hashtag Analysis
-
-Visual analysis of the most frequently occurring hashtags in the processed tweets.
-
-![Hashtag Analysis](images/sentiment-charts2.png)
-*Top hashtags word cloud and frequency chart from tweet analysis*
-
-### Detailed Tweets View
-
-Detailed table view showing individual tweets with their sentiment scores, hashtags, and metadata.
-
-![Detailed Tweets](images/sentiment-charts3.png)
-*Real-time feed of processed tweets with sentiment analysis results*
-
----
-
-## 📊 Dataset Overview
+## �📊 Dataset Overview
 
 ### Data Source
 
